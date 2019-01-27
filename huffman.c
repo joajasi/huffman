@@ -17,7 +17,6 @@ typedef struct QueueNode {
 
 
 QueueNode* createQueueNode(HuffNode* huffNode) {
-    printf("createQueueNode %c\n", huffNode->chr);
     QueueNode* queueNode = (QueueNode*) malloc(sizeof(QueueNode));
     queueNode->node = huffNode;
     queueNode->next = NULL;
@@ -25,12 +24,10 @@ QueueNode* createQueueNode(HuffNode* huffNode) {
 }
 
 void addToQueue(QueueNode** root, HuffNode* node) {
-    printf("addToQueue %c\n", node->chr);
     QueueNode* queueNode = createQueueNode(node);
     if(!*root) {
         *root = queueNode;
     } else {
-        printf("addtoQueue: 2\n");
         if((*root)->node->freq > node->freq) {
             queueNode->next = *root; 
             *root = queueNode;
@@ -48,7 +45,6 @@ void addToQueue(QueueNode** root, HuffNode* node) {
 }
 
 HuffNode* removeFromQueue(QueueNode** root) {
-    printf("removeFromQueue\n");
     if (!*root) {
         return NULL;
     }
@@ -60,7 +56,6 @@ HuffNode* removeFromQueue(QueueNode** root) {
 }
 
 HuffNode* createHuffNode(char chr, int freq, HuffNode* left, HuffNode*right) {
-    printf("createHuffNode %c\n", chr);
     HuffNode* node = (HuffNode*)malloc(sizeof(HuffNode));
     if (freq) {
         node->left = NULL;
@@ -95,7 +90,6 @@ void printHuff(HuffNode* node, int lvl, char* table) {
     }
 }
 void huffman(char* chars, int* freqs, int size, HuffNode** root) {
-    printf("huffman\n"); 
     QueueNode* queueRoot = NULL; 
     for (int i = 0; i < size; i = i + 1) {
         printf("huffman: addToQueue \n");
